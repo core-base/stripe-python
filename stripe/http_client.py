@@ -5,13 +5,13 @@ import textwrap
 import warnings
 import email
 import time
-import random
 import threading
 import json
 
 import stripe
 from stripe import error, util, six
 from stripe.request_metrics import RequestMetrics
+import secrets
 
 # - Requests is the preferred HTTP library
 # - Google App Engine has urlfetch
@@ -257,7 +257,7 @@ class HTTPClient(object):
     def _add_jitter_time(self, sleep_seconds):
         # Randomize the value in [(sleep_seconds/ 2) to (sleep_seconds)]
         # Also separated method here to isolate randomness for tests
-        sleep_seconds *= 0.5 * (1 + random.uniform(0, 1))
+        sleep_seconds *= 0.5 * (1 + secrets.SystemRandom().uniform(0, 1))
         return sleep_seconds
 
     def _add_telemetry_header(self, headers):
