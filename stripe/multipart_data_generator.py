@@ -1,9 +1,8 @@
 from __future__ import absolute_import, division, print_function
-
-import random
 import io
 
 import stripe
+import secrets
 
 
 class MultipartDataGenerator(object):
@@ -80,4 +79,4 @@ class MultipartDataGenerator(object):
             self._write(file_contents)
 
     def _initialize_boundary(self):
-        return random.randint(0, 2 ** 63)
+        return secrets.SystemRandom().randint(0, 2 ** 63)
