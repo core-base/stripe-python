@@ -1,4 +1,3 @@
-from __future__ import absolute_import, division, print_function
 
 from stripe import six, util
 from stripe.stripe_object import StripeObject
