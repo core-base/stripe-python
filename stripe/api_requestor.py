@@ -39,7 +39,7 @@ def _api_encode(data):
             continue
         elif hasattr(value, "stripe_id"):
             yield (key, value.stripe_id)
-        elif isinstance(value, list) or isinstance(value, tuple):
+        elif isinstance(value, (list, tuple)):
             for i, sv in enumerate(value):
                 if isinstance(sv, dict):
                     subdict = _encode_nested_dict("%s[%d]" % (key, i), sv)
